@@ -6,7 +6,6 @@
     <a href="{% url 'catalog:newspaper-delete' pk=newspaper.id %}" class="btn btn-danger link-to-page">
       Delete
     </a>
-
     <a href="{% url 'catalog:newspaper-update' pk=newspaper.id %}" class="btn btn-secondary link-to-page">
       Update
     </a>
@@ -20,19 +19,20 @@
     {% endif %}
   </p>
 
-  <h1>
-    Redactors
+  <h2>Content</h2>
+  <p>{{ newspaper.content }}</p>  <!-- Add this line to display the content -->
 
-    {% if newspaper in user.newspapers.all %}
-      <a href="{% url 'catalog:toggle-newspaper-assign' pk=newspaper.id %}" class="btn btn-danger link-to-page">
-        Remove me from this newspaper
-      </a>
-    {% else %}
-      <a href="{% url 'catalog:toggle-newspaper-assign' pk=newspaper.id %}" class="btn btn-success link-to-page">
-        Assign me to this newspaper
-      </a>
-    {% endif %}
-  </h1>
+  <h3>Redactors</h3>
+
+  {% if newspaper in user.newspapers.all %}
+    <a href="{% url 'catalog:toggle-newspaper-assign' pk=newspaper.id %}" class="btn btn-danger link-to-page">
+      Remove me from this newspaper
+    </a>
+  {% else %}
+    <a href="{% url 'catalog:toggle-newspaper-assign' pk=newspaper.id %}" class="btn btn-success link-to-page">
+      Assign me to this newspaper
+    </a>
+  {% endif %}
 
   <hr>
 

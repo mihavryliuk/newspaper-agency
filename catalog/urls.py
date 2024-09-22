@@ -3,7 +3,7 @@ from django.urls import path
 from catalog import views
 from catalog.views import index, TopicListView, TopicCreateView, TopicUpdateView, TopicDeleteView, RedactorListView, \
     RedactorDetailView, RedactorCreateView, RedactorUpdateView, RedactorDeleteView, NewspaperListView, \
-    NewspaperDetailView, NewspaperCreateView, NewspaperUpdateView, NewspaperDeleteView
+    NewspaperDetailView, NewspaperCreateView, NewspaperUpdateView, NewspaperDeleteView, toggle_assign_to_newspaper
 
 app_name = "catalog"
 urlpatterns = [
@@ -39,4 +39,5 @@ urlpatterns = [
     path("newspapers/create/", NewspaperCreateView.as_view(), name="newspaper-create"),
     path("newspapers/<int:pk>/update/", NewspaperUpdateView.as_view(), name="newspaper-update"),
     path("newspapers/<int:pk>/delete/", NewspaperDeleteView.as_view(), name="newspaper-delete"),
+    path("newspapers/<int:pk>/toggle-assign/", toggle_assign_to_newspaper, name="toggle-newspaper-assign"),
 ]
