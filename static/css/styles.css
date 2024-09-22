@@ -4,7 +4,7 @@ body {
 }
 
 .sidebar {
-    background-color: #343a40;
+    background-color: #ADD8E6;
     color: #8bc4e0;
     min-height: 100vh;
     padding: 20px;
@@ -47,12 +47,14 @@ body {
 }
 
 .footer {
-    background-color: #343a40;
+    background-color: #3498db;
     color: #ffffff;
     text-align: center;
     padding: 1px;
     width: calc(100% - 240px);
     margin-left: 240px;
+    font-size: 0.85rem;
+    max-height: 20px;
 }
 .table-hover tbody tr:hover {
     background-color: #e0f7fa;;
