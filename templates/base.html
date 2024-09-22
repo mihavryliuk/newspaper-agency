@@ -14,23 +14,26 @@
 </head>
 
 <body>
-<div class="container-fluid">
-    <div class="row">
-        <nav class="col-sm-2 bg-light sidebar">
-            {% block sidebar %}
-                {% include "includes/sidebar.html" %}
+<div class="container-fluid d-flex flex-column" style="min-height: 100vh;">
+    <nav class="sidebar">
+        {% block sidebar %}
+            {% include "includes/sidebar.html" %}
+        {% endblock %}
+    </nav>
+    <main class="content flex-grow-1">
+        <header class="header">
+            <h1 class="m-0">Newspaper Agency</h1>
+        </header>
+        <div>
+            {% block content %}{% endblock %}
+            {% block pagination %}
+                {% include "includes/pagination.html" %}
             {% endblock %}
-        </nav>
-        <main class="col-sm-10">
-            <div class="content p-3">
-                {% block content %}{% endblock %}
-                
-                {% block pagination %}
-                    {% include "includes/pagination.html" %}
-                {% endblock %}
-            </div>
-        </main>
-    </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2024 Newspaper Agency. All rights reserved.</p>
+    </footer>
 </div>
 </body>
 

@@ -1,32 +1,40 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>
-    Username: {{ redactor.username }}
-    <a href="{% url 'catalog:redactor-delete' pk=redactor.id %}" class="btn btn-danger link-to-page">
-      Delete
-    </a>
-    <a href="{% url 'catalog:redactor-update' pk=redactor.id %}" class="btn btn-secondary link-to-page">
-      Update
-    </a>
-  </h1>
+  <div class="container my-4">
+    <h1 class="mb-4">
+      Username: {{ redactor.username }}
+    </h1>
+    <div class="mb-3">
+      <a href="{% url 'catalog:redactor-delete' pk=redactor.id %}" class="btn btn-danger me-2">
+        Delete
+      </a>
+      <a href="{% url 'catalog:redactor-update' pk=redactor.id %}" class="btn btn-secondary">
+        Update
+      </a>
+    </div>
 
-  <p><strong>First name:</strong> {{ redactor.first_name }}</p>
-  <p><strong>Last name:</strong> {{ redactor.last_name }}</p>
-  <p><strong>Years of experience:</strong> {{ redactor.years_of_experience }}</p>
-  <p><strong>Is staff:</strong> {{ redactor.is_staff }}</p>
+    <div class="card p-4 mb-4" style="background-color: #e3f2fd; border: 1px solid #90caf9;">
+      <h5 class="card-title" style="color: #0056b3;">Redactor Details</h5>
+      <p><strong>First name:</strong> {{ redactor.first_name }}</p>
+      <p><strong>Last name:</strong> {{ redactor.last_name }}</p>
+      <p><strong>Years of experience:</strong> {{ redactor.years_of_experience }}</p>
+      <p><strong>Is staff:</strong> {{ redactor.is_staff|yesno:"Yes,No" }}</p>
+    </div>
 
-  <div class="ml-3">
-    <h4>Newspapers</h4>
-
-    {% for newspaper in redactor.newspapers.all %}
-        <hr>
-        <p><strong>Title:</strong> {{ newspaper.title }}</p>
-        <p><strong>Published Date:</strong> {{ newspaper.published_date }}</p>
-        <p class="text-muted"><strong>Id:</strong> {{ newspaper.id }}</p>
-
-    {% empty %}
+    <h4 class="mb-3" style="color: #007bff;">Newspapers</h4>
+    {% if redactor.newspapers.all %}
+      <div class="list-group">
+        {% for newspaper in redactor.newspapers.all %}
+          <div class="list-group-item">
+            <h5 class="mb-1" style="color: #343a40;">{{ newspaper.title }}</h5>
+            <p class="mb-1"><strong>Published Date:</strong> {{ newspaper.published_date }}</p>
+            <p class="text-muted"><strong>Id:</strong> {{ newspaper.id }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
       <p>No newspapers!</p>
-    {% endfor %}
+    {% endif %}
   </div>
-{% endblock %}
+{% endblock %}x
