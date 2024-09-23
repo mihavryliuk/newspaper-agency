@@ -76,9 +76,14 @@ class PrivateRedactorTest(TestCase):
             "first_name": "Alice",
             "last_name": "Smith"
         }
-        response = self.client.post(reverse("catalog:redactor-create"), data=form_data)
+        response = self.client.post(
+            reverse("catalog:redactor-create"),
+            data=form_data
+        )
         self.assertEqual(response.status_code, 302)
-        self.assertTrue(Redactor.objects.filter(username="new_redactor").exists())
+        self.assertTrue(
+            Redactor.objects.filter(username="new_redactor").exists()
+        )
 
     def test_update_redactor(self):
         redactor = Redactor.objects.create(
@@ -92,7 +97,11 @@ class PrivateRedactorTest(TestCase):
         form_data = {
             "years_of_experience": 5
         }
-        response = self.client.post(reverse("catalog:redactor-update", args=[redactor.id]), data=form_data)
+        response = self.client.post(reverse(
+            "catalog:redactor-update",
+            args=[redactor.id]),
+            data=form_data
+        )
         self.assertEqual(response.status_code, 302)
         redactor.refresh_from_db()
         self.assertEqual(redactor.years_of_experience, 5)
@@ -106,6 +115,9 @@ class PrivateRedactorTest(TestCase):
             last_name="LastName"
         )
 
-        response = self.client.post(reverse("catalog:redactor-delete", args=[redactor.id]))
+        response = self.client.post(reverse(
+            "catalog:redactor-delete",
+            args=[redactor.id])
+        )
         self.assertEqual(response.status_code, 302)
         self.assertFalse(Redactor.objects.filter(id=redactor.id).exists())

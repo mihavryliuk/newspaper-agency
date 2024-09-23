@@ -28,7 +28,10 @@ class PrivateTopicTest(TestCase):
         test_response = self.client.get(TOPIC_LIST_URL)
         self.assertEqual(test_response.status_code, 200)
         topics = Topic.objects.all()
-        self.assertEqual(list(test_response.context["topic_list"]), list(topics))
+        self.assertEqual(
+            list(test_response.context["topic_list"]),
+            list(topics)
+        )
         self.assertTemplateUsed(test_response, "catalog/topic_list.html")
 
     def test_search_topic_by_name(self):

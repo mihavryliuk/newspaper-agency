@@ -49,7 +49,10 @@ class AdminTestCase(TestCase):
         self.assertContains(response_test, self.newspaper.topic.name)
 
     def test_newspaper_detail_topic_listed(self):
-        url = reverse("admin:catalog_newspaper_change", args=[self.newspaper.pk])
+        url = reverse(
+            "admin:catalog_newspaper_change",
+            args=[self.newspaper.pk]
+        )
         response_test = self.client.get(url)
         self.assertContains(response_test, self.newspaper.topic.name)
 

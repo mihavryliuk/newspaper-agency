@@ -4,11 +4,12 @@
     <li class="list-group-item">
       <form action="{% url 'logout' %}" method="post" style="display: inline;">
         {% csrf_token %}
-        <input type="submit" value="Logout" class="btn btn-link" style="padding: 0; background: none; border: none; color: inherit; text-decoration: underline;">
+        <input type="submit" value="Logout" class="btn btn-link"
+               style="padding: 0; background: none; border: none; color: inherit; text-decoration: underline;">
       </form>
     </li>
   {% else %}
-    <li class="list-group-item"><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
+    <li class="list-group-item"><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
   {% endif %}
 
   <br>

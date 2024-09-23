@@ -5,9 +5,15 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.views import generic
 
-from .forms import TopicSearchForm, NewspaperForm, NewspaperSearchForm, RedactorUpdateForm, RedactorCreationForm, \
-    RedactorSearchForm
+from .forms import (
+    TopicSearchForm,
+    NewspaperForm,
+    NewspaperSearchForm,
+    RedactorUpdateForm,
+    RedactorCreationForm,
+    RedactorSearchForm)
 from .models import Topic, Redactor, Newspaper
+
 
 @login_required
 def index(request):
@@ -117,14 +123,18 @@ class RedactorListView(LoginRequiredMixin, generic.ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         username = self.request.GET.get("username", "")
-        context["search_form"] = RedactorSearchForm(initial={"username": username})
+        context["search_form"] = RedactorSearchForm(
+            initial={"username": username}
+        )
         return context
 
     def get_queryset(self):
         queryset = Redactor.objects.all()
         form = RedactorSearchForm(self.request.GET)
         if form.is_valid():
-            queryset = queryset.filter(username__icontains=form.cleaned_data["username"])
+            queryset = queryset.filter(
+                username__icontains=form.cleaned_data["username"]
+            )
         return queryset
 
 
@@ -158,4 +168,6 @@ def toggle_assign_to_newspaper(request, pk):
         redactor.newspapers.remove(newspaper)
     else:
         redactor.newspapers.add(newspaper)
-    return HttpResponseRedirect(reverse_lazy("catalog:newspaper-detail", args=[pk]))
+    return HttpResponseRedirect(
+        reverse_lazy("catalog:newspaper-detail", args=[pk])
+    )

@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .models import Topic, Redactor, Newspaper
 
+
 @admin.register(Redactor)
 class RedactorAdmin(UserAdmin):
     list_display = UserAdmin.list_display + ("years_of_experience",)
@@ -23,9 +24,11 @@ class RedactorAdmin(UserAdmin):
         )
     )
 
+
 @admin.register(Topic)
 class TopicAdmin(admin.ModelAdmin):
     search_fields = ("name",)
+
 
 @admin.register(Newspaper)
 class NewspaperAdmin(admin.ModelAdmin):
