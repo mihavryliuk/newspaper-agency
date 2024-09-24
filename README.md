@@ -3,8 +3,9 @@
 
 App for newspaper agency to create new newspapers
 
-
-
+to try:
+username = user;  
+password = userpass321
 
 ## deployed to
 
