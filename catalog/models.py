@@ -17,7 +17,7 @@ class Redactor(AbstractUser):
         return self.username
 
     def get_absolute_url(self):
-        return reverse('catalog:redactor-detail', args=[str(self.id)])
+        return reverse("catalog:redactor-detail", args=[str(self.id)])
 
 
 class Newspaper(models.Model):

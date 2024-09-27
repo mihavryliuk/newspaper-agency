@@ -6,4 +6,6 @@
     {% csrf_token %}
     <input type="submit" value="Yes" class="btn btn-danger">
   </form>
+  
+  <a href="{% url 'catalog:redactor-list' %}" class="btn btn-secondary mt-4">Cancel</a>
 {% endblock %}

@@ -7,6 +7,34 @@ to try:
 username = user;  
 password = userpass321
 
+## Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/mihavryliuk/newspaper-agency
+   cd newspaper_agency
+   
+2. **Create and activate a virtual environment:**
+   ```bash
+    python -m venv .venv
+    .venv\Scripts\activate
+
+3. **Install dependencies**
+   ```bash
+    pip install -r requirements.txt
+4. **Create a .env file from the sample**
+    ```bash
+    cp .env.sample .env
+
+5. **Run database migrations**
+    ```bash
+    python manage.py migrate
+6. **Run server**
+    ```bash
+    python manage.py runserver
+
+   
+
 ## deployed to
 
 https://newspaper-agency-96fn.onrender.com
