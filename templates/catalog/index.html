@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h1 class="text-center mb-4" style="color: #2c3e50; font-family: 'Arial', sans-serif;">Welcome to the Best Newspaper
+      Ever!</h1>
+    <h2 class="mb-3" style="color: #34495e;">Dynamic Content</h2>
+    <p class="lead mb-4" style="color: #7f8c8d;">Here are the current record counts:</p>
+
+    <div class="card shadow-lg">
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item d-flex justify-content-between align-items-center"
+              style="background-color: #ecf0f1;">
+            <strong style="color: #2980b9;">Newspapers:</strong> <span
+              class="badge badge-success">{{ num_newspapers }}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center"
+              style="background-color: #ecf0f1;">
+            <strong style="color: #2980b9;">Redactors:</strong> <span
+              class="badge badge-success">{{ num_redactors }}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center"
+              style="background-color: #ecf0f1;">
+            <strong style="color: #2980b9;">Topics:</strong> <span class="badge badge-success">{{ num_topics }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="text-muted mt-4" style="font-size: 1.2em; color: #95a5a6;">You have visited this page {{ num_visits }}
+      time{{ num_visits|pluralize }}.</p>
+
+    <div class="text-center mt-4">
+      <a href="{% url 'catalog:redactor-create' %}" class="btn btn-success btn-lg">Create New Redactor</a>
+    </div>
+  </div>
+{% endblock %}

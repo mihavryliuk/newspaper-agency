@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <div class="container my-4">
+    <h1 class="text-center mb-4">Create Redactor</h1>
+    <form action="" method="post" novalidate>
+      {% csrf_token %}
+      <div class="card p-4">
+        {{ form|crispy }}
+        <div class="d-flex justify-content-between mt-4">
+          <input type="submit" value="Submit" class="btn btn-success">
+          <a href="{% url 'catalog:redactor-list' %}" class="btn btn-secondary">Cancel</a>
+        </div>
+      </div>
+    </form>
+  </div>
+{% endblock %}

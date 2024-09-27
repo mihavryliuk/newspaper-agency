@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <div class="container">
+    <h1 class="my-4">Topic List</h1>
+    <div class="mb-3">
+      <a href="{% url 'catalog:topic-create' %}" class="btn btn-primary">Create Topic</a>
+    </div>
+    <form method="get" action="" class="form-inline mb-4">
+      {{ search_form|crispy }}
+      <button class="btn btn-secondary ml-2" type="submit">🔎</button>
+    </form>
+
+    {% if topic_list %}
+      <table class="table">
+        <thead class="{% cycle 'table-light' 'table-info' %}">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for topic in topic_list %}
+          <tr class="{% cycle 'table-light' 'table-info' %}">
+            <td>{{ topic.id }}</td>
+            <td>{{ topic.name }}</td>
+            <td>
+              <a class="btn btn-warning btn-sm" href="{% url 'catalog:topic-update' pk=topic.id %}">Update</a>
+              <a class="btn btn-danger btn-sm" href="{% url 'catalog:topic-delete' pk=topic.id %}">Delete</a>
+            </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <div class="alert alert-info" role="alert">
+        There are no topics available.
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}
