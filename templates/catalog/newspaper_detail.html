@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container my-4">
+    <h1 class="mb-4">
+      {{ newspaper.title }}
+      <div class="btn-group" role="group">
+        <a href="{% url 'catalog:newspaper-delete' pk=newspaper.id %}" class="btn btn-danger">
+          Delete
+        </a>
+        <a href="{% url 'catalog:newspaper-update' pk=newspaper.id %}" class="btn btn-secondary">
+          Update
+        </a>
+      </div>
+    </h1>
+
+    <p class="lead">Topic:
+      {% if newspaper.topic %}
+        {{ newspaper.topic.name }}
+      {% else %}
+        No topic
+      {% endif %}
+    </p>
+
+    <h2 class="mt-4">Content</h2>
+    <p>{{ newspaper.content|linebreaks }}</p>
+
+    <h3 class="mt-4">Redactors</h3>
+
+    {% if newspaper in user.newspapers.all %}
+      <a href="{% url 'catalog:toggle-newspaper-assign' pk=newspaper.id %}" class="btn btn-danger mb-3">
+        Remove me from this newspaper
+      </a>
+    {% else %}
+      <a href="{% url 'catalog:toggle-newspaper-assign' pk=newspaper.id %}" class="btn btn-success mb-3">
+        Assign me to this newspaper
+      </a>
+    {% endif %}
+
+    <hr>
+
+    <h4 class="text-info">List of Redactors:</h4>
+    <ul class="list-group">
+      {% for redactor in newspaper.publishers.all %}
+        <li class="list-group-item">
+          {{ redactor.username }} ({{ redactor.first_name }} {{ redactor.last_name }}) -
+          {{ redactor.years_of_experience }} years of experience
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}
